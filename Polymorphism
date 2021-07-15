@@ -1,0 +1,85 @@
+REPORT ZEG_OO_POLYMORPHISM.
+
+* Parent Class definition
+CLASS parentclass DEFINITION.
+PUBLIC SECTION.
+
+* Parent class method definition.
+  METHODS methodnew.
+ENDCLASS.
+
+* Parent Class implementation
+CLASS parentclass IMPLEMENTATION.
+
+* Method implementation in parent class.
+  METHOD methodnew.
+     WRITE:/ 'methodnew from parentclass executing..'.
+  ENDMETHOD.
+ENDCLASS.
+
+* Childclass1 Definition
+CLASS Childclass1 DEFINITION INHERITING FROM Parentclass.
+PUBLIC SECTION.
+
+* Method definition in Childclass1
+  METHODS methodnew REDEFINITION.
+ENDCLASS.
+
+* Childclass1 implementation
+CLASS childclass1 IMPLEMENTATION.
+
+* Method implementation in Childclass1
+  METHOD methodnew.
+      WRITE:/ 'methodnew from childclass1 executing..'.
+  ENDMETHOD.
+ENDCLASS.
+
+* Childclass2 Definition
+CLASS Childclass2 DEFINITION INHERITING FROM Parentclass.
+PUBLIC SECTION.
+
+* Method definition in Childclass2
+  METHODS methodnew REDEFINITION.
+ENDCLASS.
+
+* Childclass2 implementation
+CLASS childclass2 IMPLEMENTATION.
+  METHOD methodnew.
+
+* Method implementation in Childclass2
+      WRITE:/ 'methodnew from childclass2 executing..'.
+  ENDMETHOD.
+ENDCLASS.
+
+* Creatng class object
+START-OF-SELECTION.
+
+* Declaring and creating object for parent class
+  DATA: parentobj TYPE REF TO parentclass.
+  CREATE OBJECT parentobj.
+  WRITE /'Accessing methodnew through parentclass object...'.
+  SKIP 2.
+
+* Calling method in parent class
+  CALL METHOD: parentobj->methodnew.
+  ULINE.
+
+* Declaring and creating object for Childclass1
+  DATA: childobj1 TYPE REF TO childclass1.
+  CREATE OBJECT childobj1.
+  WRITE /'Accessing methodnew through childclass1 object...'.
+  SKIP 2.
+
+* Calling method in Childclass1
+  CALL METHOD: childobj1->methodnew.
+  ULINE.
+
+* Declaring and creating object for Childclass2
+  DATA: childobj2 TYPE REF TO childclass2.
+  CREATE OBJECT childobj2.
+  WRITE /'Accessing methodnew through childclass2 object...'.
+  SKIP 2.
+
+* Calling method in Childclass2
+  CALL METHOD: childobj2->methodnew.
+  ULINE.
