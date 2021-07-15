@@ -82,4 +82,4 @@ START-OF-SELECTION.
 
 * Calling method in Childclass2
   CALL METHOD: childobj2->methodnew.
-  ULINE.
+  ULINE. 
